@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MMDrawController_Example' do
+  pod 'MMDrawController', :path => '../'
+
+  target 'MMDrawController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
