@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		313F3A2EF7FACABB3C55CC81 /* Pods_MMDrawController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE313D690E7A3B0E1333B2C7 /* Pods_MMDrawController_Example.framework */; };
 		57B8A6D8AC5A3B7D4FA3C9E9 /* Pods_MMDrawController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201DE2C36A830C235FF9171 /* Pods_MMDrawController_Tests.framework */; };
+		5E18C2C81E92388E0071709E /* SliderRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2C71E92388E0071709E /* SliderRightViewController.swift */; };
+		5EFF34101E8CFD5A00665E37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */; };
+		5EFF34141E8D021700665E37 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF34131E8D021700665E37 /* SliderViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,6 +34,9 @@
 		13B8BD960333B99D854D441B /* Pods-MMDrawController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMDrawController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMDrawController_Example/Pods-MMDrawController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2A65ADD6268E6535C9A7DA5B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		45C29CE5348BBD825878E445 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		5E18C2C71E92388E0071709E /* SliderRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderRightViewController.swift; sourceTree = "<group>"; };
+		5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5EFF34131E8D021700665E37 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MMDrawController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMDrawController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +105,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */,
+				5EFF34131E8D021700665E37 /* SliderViewController.swift */,
+				5E18C2C71E92388E0071709E /* SliderRightViewController.swift */,
 			);
 			name = "Example for MMDrawController";
 			path = MMDrawController;
@@ -215,10 +224,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 3N2EM49X57;
 						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 3N2EM49X57;
 						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -361,8 +372,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EFF34101E8CFD5A00665E37 /* MainViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				5EFF34141E8D021700665E37 /* SliderViewController.swift in Sources */,
+				5E18C2C81E92388E0071709E /* SliderRightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,8 +509,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D76ECDE74F1FCC4B8EC768D7 /* Pods-MMDrawController_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3N2EM49X57;
 				INFOPLIST_FILE = MMDrawController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -509,8 +526,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13B8BD960333B99D854D441B /* Pods-MMDrawController_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3N2EM49X57;
 				INFOPLIST_FILE = MMDrawController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -523,6 +543,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CB57EF10395F8A67F99A7D6 /* Pods-MMDrawController_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 3N2EM49X57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -543,6 +564,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB5D23FE778C00297BDDE73A /* Pods-MMDrawController_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 3N2EM49X57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

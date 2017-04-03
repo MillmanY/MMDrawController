@@ -7,18 +7,23 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
+import MMDrawController
+class ViewController: MMDrawerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Init by storyboard identifier
+        super.setMainWith(identifier: "Home")
+        super.setLeftWith(identifier: "Member", mode: .frontWidthRate(r: 0.6))
+        //Init by Code
+        let story = UIStoryboard.init(name: "Main", bundle: nil)
+        let right = story.instantiateViewController(withIdentifier: "SliderRight")
+        super.set(right: right, mode: .rearWidth(w: 100))
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 

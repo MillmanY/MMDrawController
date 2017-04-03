@@ -1,0 +1,22 @@
+{
+  "name": "MMDrawController",
+  "version": "0.1.0",
+  "summary": "A short description of MMDrawController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/millmanyang@gmail.com/MMDrawController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "millmanyang@gmail.com": "millmanyang@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/millmanyang@gmail.com/MMDrawController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MMDrawController/Classes/**/*"
+}

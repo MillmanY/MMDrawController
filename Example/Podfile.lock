@@ -1,0 +1,16 @@
+PODS:
+  - MMDrawController (0.1.0)
+
+DEPENDENCIES:
+  - MMDrawController (from `../`)
+
+EXTERNAL SOURCES:
+  MMDrawController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MMDrawController: ad777c35f96d2615ffefad718f7c41b57fd6112a
+
+PODFILE CHECKSUM: 3784d67109e361c72836874bc082017496cb35e4
+
+COCOAPODS: 1.1.1
