@@ -32,6 +32,8 @@ public class SliderManager: NSObject {
             slider?.view.removeGestureRecognizer(sliderPan)
             slider?.removeFromParentViewController()
             slider?.view.removeFromSuperview()
+        } didSet {
+            slider?.view.isHidden = true
         }
     }
     
@@ -39,9 +41,7 @@ public class SliderManager: NSObject {
         didSet{
             switch mode {
             case .frontWidth(_), .frontWidthRate(_):
-                slider?.view.layer.shadowColor   = UIColor.black.cgColor
-                slider?.view.layer.shadowOpacity = 0.4
-                slider?.view.layer.shadowRadius  = 5.0
+                slider?.view.shadow(opacity: 0.4, radius: 5.0)
                 sliderPan.isEnabled = true
             default:
                 sliderPan.isEnabled = false
@@ -68,10 +68,18 @@ public class SliderManager: NSObject {
     func show(isShow:Bool) {
         self.isShow = isShow
         self.slider?.beginAppearanceTransition(isShow, animated: true)
+        if isShow {
+            self.slider?.view.isHidden = !isShow
+        }
+        
         UIView.animate(withDuration: animateDuration, animations: {
             self.resetFrame()
         }, completion: { (finish) in
             self.slider?.endAppearanceTransition()
+            
+            if !isShow {
+                self.slider?.view.isHidden = !isShow
+            }
         })
    }
     
@@ -88,20 +96,16 @@ public class SliderManager: NSObject {
                 let fixW = mainW * r
                 self.front(sliderView: view, width: fixW)
             case .rearWidth(let w):
-                if let m = drawer.main?.view {
-                    self.rear(sliderView: view, width: w)
-                }
+                self.rear(sliderView: view, width: w)
             case .rearWidthRate(let r):
                 let fix = mainW * r
-                if let m = drawer.main?.view {
-                    self.rear(sliderView: view, width: fix)
-                }
+                self.rear(sliderView: view, width: fix)
             default: break
             }
         }
     }
 
-    fileprivate func isSliderFront() -> Bool {
+    func isSliderFront() -> Bool {
         switch self.mode {
         case .frontWidth(_) , .frontWidthRate(_):
             return true
@@ -116,6 +120,7 @@ extension SliderManager {
         if let view = pan.view {
             switch pan.state {
             case .began:
+                slider?.view.isHidden = false
                 lastPoint = pan.translation(in: view)
             case .changed:
                 let current = pan.translation(in: view)
@@ -134,9 +139,8 @@ extension SliderManager {
     
     func setViewLocate(currentPoint:CGPoint , lastPoint:CGPoint) {
         
-        if let mainView = self.drawer.main?.view ,
-           let sliderView = self.slider?.view {
-            
+        if let sliderView = self.slider?.view {
+            let mainView = self.drawer.containerView 
             let mainFrame = mainView.frame
             let shiftView = self.isSliderFront() ? sliderView : mainView
 
@@ -144,15 +148,21 @@ extension SliderManager {
             case .left:
                 let shift = currentPoint.x - lastPoint.x
                 let will = shiftView.frame.origin.x + shift
-                if will <= 0 {
+                
+                if isSliderFront() && will <= 0 {
+                    shiftView.frame.origin.x = will
+                } else if !isSliderFront() && will >= 0 && will <= sliderView.frame.width{
                     shiftView.frame.origin.x = will
                 }
-                
             case .right:
                 let shift = currentPoint.x - lastPoint.x                
                 let will = shiftView.frame.origin.x + shift
-                if will > -sliderView.frame.width && will <= 0{
+                
+                if  isSliderFront() && will >= mainFrame.width - sliderView.frame.width {
                     shiftView.frame.origin.x = will
+                } else if !isSliderFront() && will >= -sliderView.frame.width &&  will <= 0 {
+                    shiftView.frame.origin.x = will
+
                 }
             default:
                 break
@@ -218,18 +228,17 @@ extension SliderManager {
     }
     
     fileprivate func fixMainFrameWith(slider:UIView) {
-        if let mainView = drawer.main?.view {
-            var frame = mainView.frame
-            
-            switch self.location {
-            case .left:
-                frame.origin.x = (self.isShow) ? slider.frame.width : 0
-            case .right:
-                frame.origin.x = (self.isShow) ? -slider.frame.width  : 0
-            default:
-                break
-            }
-            mainView.frame = frame
+        let mainView = drawer.containerView
+        var frame = mainView.frame
+        
+        switch self.location {
+        case .left:
+            frame.origin.x = (self.isShow) ? slider.frame.width : 0
+        case .right:
+            frame.origin.x = (self.isShow) ? -slider.frame.width  : 0
+        default:
+            break
         }
+        mainView.frame = frame
     }
 }

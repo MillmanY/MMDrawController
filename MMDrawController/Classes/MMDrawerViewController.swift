@@ -34,7 +34,7 @@ struct SegueParams {
 }
 
 open class MMDrawerViewController: UIViewController  {
-    private var containerView = UIView()
+    var containerView = UIView()
     var sliderMap = [SliderLocation:SliderManager]()
     var currentManager:SliderManager?
     
@@ -64,11 +64,11 @@ open class MMDrawerViewController: UIViewController  {
             main?.view.removeFromSuperview()
         } didSet {
             if let new = main {                
-                new.view.layer.shadowColor   = UIColor.black.cgColor
-                new.view.layer.shadowOpacity = 0.4
-                new.view.layer.shadowRadius  = 5.0
+                new.view.shadow(opacity: 0.4, radius: 5.0)
                 new.view.addGestureRecognizer(mainPan)
+                
                 containerView.addSubview(new.view)
+                self.view.layoutIfNeeded()
                 self.addChildViewController(new)
             }
         }
@@ -83,9 +83,22 @@ open class MMDrawerViewController: UIViewController  {
         super.viewDidLayoutSubviews()
         
         if let m = main {
-            containerView.frame = self.view.bounds
             m.view.frame = containerView.bounds
-            sliderMap.forEach({ $0.value.resetFrame() })
+            
+            var isRearShow = false
+            sliderMap.forEach({
+                if !isRearShow {
+                    $0.value.resetFrame()
+                }
+
+                if $0.value.isShow && !$0.value.isSliderFront() {
+                    isRearShow = true
+                }
+            })
+            
+            if !isRearShow {
+                containerView.frame = self.view.bounds
+            }
         }
     }
     
