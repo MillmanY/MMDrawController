@@ -27,6 +27,7 @@
                     <connections>
                         <segue destination="V02-MS-RY4" kind="custom" identifier="Home" customClass="DrawerSegue" customModule="MMDrawController" id="q3q-vg-9eX"/>
                         <segue destination="Tgd-Pv-2BB" kind="custom" identifier="Member" customClass="DrawerSegue" customModule="MMDrawController" id="S46-Nx-mE1"/>
+                        <segue destination="pn6-qN-NnH" kind="custom" identifier="Setting" customClass="DrawerSegue" customModule="MMDrawController" id="5nO-5W-p4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -94,7 +95,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7OW-uN-d2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234.40000000000001" y="71.514242878560722"/>
+            <point key="canvasLocation" x="-502" y="1182"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zyt-kw-Cpw">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaX-12-RBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="pn6-qN-NnH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SlM-Pp-Hl4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sTE-kQ-W6s" kind="relationship" relationship="rootViewController" id="pvY-up-ehh"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="90" y="230"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="jAQ-za-Ixe">
+            <objects>
+                <viewController id="sTE-kQ-W6s" customClass="SettingViewController" customModule="MMDrawController_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jAY-ou-3Xw"/>
+                        <viewControllerLayoutGuide type="bottom" id="KFW-cF-lat"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WTy-aW-hT0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member" translatesAutoresizingMaskIntoConstraints="NO" id="KjW-aN-bKF">
+                                <rect key="frame" x="16" y="85" width="109" height="126"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109" id="k8g-ZY-7HZ"/>
+                                    <constraint firstAttribute="width" secondItem="KjW-aN-bKF" secondAttribute="height" multiplier="109:126" id="tLM-Be-gac"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Millman" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZe-SA-sUh">
+                                <rect key="frame" x="139" y="85" width="220" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KjW-aN-bKF" firstAttribute="top" secondItem="jAY-ou-3Xw" secondAttribute="bottom" constant="21" id="BKv-n2-LUr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="KjW-aN-bKF" secondAttribute="leading" id="PGa-m3-aRw"/>
+                            <constraint firstItem="uZe-SA-sUh" firstAttribute="top" secondItem="jAY-ou-3Xw" secondAttribute="bottom" constant="21" id="TAm-dX-Ue3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uZe-SA-sUh" secondAttribute="trailing" id="dDp-C0-5dY"/>
+                            <constraint firstItem="uZe-SA-sUh" firstAttribute="leading" secondItem="KjW-aN-bKF" secondAttribute="trailing" constant="14" id="lH4-MC-jNb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="hYn-xr-itr">
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="CeV-kp-hsg">
+                            <color key="tintColor" red="0.98039215690000003" green="0.35294117650000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showLeftAction" destination="sTE-kQ-W6s" id="HVC-iK-A5N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ofn-Bb-BHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832.79999999999995" y="229.83508245877064"/>
         </scene>
         <!--Slider View Controller-->
         <scene sceneID="Ws0-eQ-Jmc">
@@ -186,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDG-qZ-Kcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="792"/>
+            <point key="canvasLocation" x="-986" y="1182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lPM-XX-6JL">
@@ -204,7 +269,7 @@
             </objects>
             <point key="canvasLocation" x="36" y="-760"/>
         </scene>
-        <!--Title-->
+        <!-- MMDrawerController-->
         <scene sceneID="qrV-g9-evu">
             <objects>
                 <viewController id="avZ-cM-ALx" customClass="MainViewController" customModule="MMDrawController_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -215,9 +280,25 @@
                     <view key="view" contentMode="scaleToFill" id="efa-h3-cQK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzt-Hs-KrY">
+                                <rect key="frame" x="50" y="98" width="275" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="lPv-rg-vVC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gzt-Hs-KrY" firstAttribute="leading" secondItem="efa-h3-cQK" secondAttribute="leadingMargin" constant="34" id="886-Zn-XlU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gzt-Hs-KrY" secondAttribute="trailing" constant="34" id="jon-UO-Xkh"/>
+                            <constraint firstItem="gzt-Hs-KrY" firstAttribute="top" secondItem="l8v-X6-L6A" secondAttribute="bottom" constant="34" id="yF6-Yh-97f"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Fpu-7c-jDT">
+                    <navigationItem key="navigationItem" title=" MMDrawerController" id="Fpu-7c-jDT">
                         <barButtonItem key="leftBarButtonItem" image="ic_menu" id="6hV-iO-cTP">
                             <color key="tintColor" red="0.98039215690000003" green="0.35294117650000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -237,7 +318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQO-Lz-2XV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="-761"/>
+            <point key="canvasLocation" x="914" y="-761"/>
         </scene>
     </scenes>
     <resources>

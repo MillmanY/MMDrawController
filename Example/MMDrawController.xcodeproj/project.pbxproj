@@ -10,6 +10,7 @@
 		313F3A2EF7FACABB3C55CC81 /* Pods_MMDrawController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE313D690E7A3B0E1333B2C7 /* Pods_MMDrawController_Example.framework */; };
 		57B8A6D8AC5A3B7D4FA3C9E9 /* Pods_MMDrawController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201DE2C36A830C235FF9171 /* Pods_MMDrawController_Tests.framework */; };
 		5E18C2C81E92388E0071709E /* SliderRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2C71E92388E0071709E /* SliderRightViewController.swift */; };
+		5E18C2CA1E923CDD0071709E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2C91E923CDD0071709E /* SettingViewController.swift */; };
 		5EFF34101E8CFD5A00665E37 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */; };
 		5EFF34141E8D021700665E37 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF34131E8D021700665E37 /* SliderViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		2A65ADD6268E6535C9A7DA5B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		45C29CE5348BBD825878E445 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		5E18C2C71E92388E0071709E /* SliderRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderRightViewController.swift; sourceTree = "<group>"; };
+		5E18C2C91E923CDD0071709E /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5EFF34131E8D021700665E37 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MMDrawController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMDrawController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 				5EFF340F1E8CFD5A00665E37 /* MainViewController.swift */,
 				5EFF34131E8D021700665E37 /* SliderViewController.swift */,
 				5E18C2C71E92388E0071709E /* SliderRightViewController.swift */,
+				5E18C2C91E923CDD0071709E /* SettingViewController.swift */,
 			);
 			name = "Example for MMDrawController";
 			path = MMDrawController;
@@ -377,6 +380,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				5EFF34141E8D021700665E37 /* SliderViewController.swift in Sources */,
 				5E18C2C81E92388E0071709E /* SliderRightViewController.swift in Sources */,
+				5E18C2CA1E923CDD0071709E /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

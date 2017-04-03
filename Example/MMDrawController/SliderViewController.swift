@@ -37,15 +37,11 @@ extension SliderViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let d = self.drawer() {
-            let story = UIStoryboard.init(name: "Main", bundle: nil)
-            if let main = story.instantiateViewController(withIdentifier: "MainVC") as? UINavigationController ,
-               let first = main.viewControllers.first {
-                if indexPath.row == 0 {
-                    first.view.backgroundColor = UIColor.red
-                } else {
-                    first.view.backgroundColor = UIColor.blue
-                }
-                d.set(main: main)
+            d.showLeftSlider(isShow: false)
+            if indexPath.row == 0 {
+                d.setMainWith(identifier: "Home")
+            } else {
+                d.setMainWith(identifier: "Setting")
             }
         }
     }
