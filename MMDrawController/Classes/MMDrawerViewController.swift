@@ -86,22 +86,19 @@ open class MMDrawerViewController: UIViewController  {
         super.viewDidLayoutSubviews()
         containerView.frame = self.view.bounds
 
-        if let m = main {
-            
-            var isRearShow = false
-            sliderMap.forEach({
-                if !isRearShow {
-                    $0.value.resetFrame()
-                }
-
-                if $0.value.isShow && !$0.value.isSliderFront() {
-                    isRearShow = true
-                }
-            })
-            
+        var isRearShow = false
+        sliderMap.forEach({
             if !isRearShow {
-                containerView.frame = self.view.bounds
+                $0.value.resetFrame()
             }
+            
+            if $0.value.isShow && !$0.value.isSliderFront() {
+                isRearShow = true
+            }
+        })
+        
+        if !isRearShow {
+            containerView.frame = self.view.bounds
         }
     }
     
@@ -184,9 +181,6 @@ extension MMDrawerViewController {
         let first = pan.location(in: pan.view)
         //Edge
         if !rect.contains(first) {
-            let vel = pan.velocity(in: pan.view)
-            let isVertical = fabs(vel.x) < fabs(vel.y)
-            
             sliderMap.forEach({ (_ , value) in
                 
                 if let s = manager?.slider?.view {

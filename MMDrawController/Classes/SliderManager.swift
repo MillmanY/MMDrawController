@@ -87,7 +87,6 @@ public class SliderManager: NSObject {
     func resetFrame() {
         let drawerFrame = drawer.view.frame
         let mainW = drawerFrame.width
-        let mainH = drawerFrame.height
     
         if let view = self.slider?.view {
             switch mode {
@@ -217,13 +216,11 @@ extension SliderManager {
         drawer.view.sendSubview(toBack: sliderView)
         
         switch self.location {
-        case .left:
-            sliderView.frame = CGRect(x: 0, y: 0, width: width, height: mainH)
         case .right:
-            sliderView.frame = CGRect(x: mainW-width, y: 0, width: width, height: mainH)
+            frame.origin.x = mainW-width
         default: break
         }
-        
+        sliderView.frame = frame
         self.fixMainFrameWith(slider: sliderView)
     }
     
