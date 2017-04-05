@@ -66,8 +66,11 @@ open class MMDrawerViewController: UIViewController  {
             if let new = main {                
                 new.view.shadow(opacity: 0.4, radius: 5.0)
                 new.view.addGestureRecognizer(mainPan)
-                
+                new.view.translatesAutoresizingMaskIntoConstraints = false
                 containerView.addSubview(new.view)
+                containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
+                containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
+
                 self.view.layoutIfNeeded()
                 self.addChildViewController(new)
             }
@@ -81,9 +84,9 @@ open class MMDrawerViewController: UIViewController  {
 
     override open func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        containerView.frame = self.view.bounds
+
         if let m = main {
-            m.view.frame = containerView.bounds
             
             var isRearShow = false
             sliderMap.forEach({

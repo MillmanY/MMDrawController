@@ -32,8 +32,7 @@ public class SliderManager: NSObject {
             slider?.view.removeGestureRecognizer(sliderPan)
             slider?.removeFromParentViewController()
             slider?.view.removeFromSuperview()
-        } didSet {
-            slider?.view.isHidden = true
+            newValue?.view.isHidden = true
         }
     }
     
@@ -44,8 +43,10 @@ public class SliderManager: NSObject {
                 slider?.view.shadow(opacity: 0.4, radius: 5.0)
                 sliderPan.isEnabled = true
             default:
+                slider?.view.shadow(opacity: 0.0, radius: 0.0)
                 sliderPan.isEnabled = false
             }
+            self.show(isShow: false)
         }
     }
     
@@ -162,7 +163,6 @@ extension SliderManager {
                     shiftView.frame.origin.x = will
                 } else if !isSliderFront() && will >= -sliderView.frame.width &&  will <= 0 {
                     shiftView.frame.origin.x = will
-
                 }
             default:
                 break
@@ -194,7 +194,7 @@ extension SliderManager {
         let mainW = drawer.view.bounds.width
         let mainH = drawer.view.bounds.height
         
-        var frame = CGRect.init(x: 0, y: 0, width: width, height: mainH)
+        var frame = CGRect(x: 0, y: 0, width: width, height: mainH)
         drawer.view.bringSubview(toFront: sliderView)
         switch self.location {
         case .left:
@@ -213,7 +213,7 @@ extension SliderManager {
                           width:CGFloat) {
         let mainW = drawer.view.bounds.width
         let mainH = drawer.view.bounds.height
-        var frame = CGRect.init(x: 0, y: 0, width: width, height: mainH)
+        var frame = CGRect(x: 0, y: 0, width: width, height: mainH)
         drawer.view.sendSubview(toBack: sliderView)
         
         switch self.location {
