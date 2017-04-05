@@ -5,11 +5,47 @@
 [![License](https://img.shields.io/cocoapods/l/MMDrawController.svg?style=flat)](http://cocoapods.org/pods/MMDrawController)
 [![Platform](https://img.shields.io/cocoapods/p/MMDrawController.svg?style=flat)](http://cocoapods.org/pods/MMDrawController)
 
-## Example
+## Demo
+landscape
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+![demo](https://github.com/MillmanY/MMDrawController/blob/master/demoFIle/landscape.gif)
+
+portrait
+    
+![demo](https://github.com/MillmanY/MMDrawController/blob/master/demoFIle/portrait.gif)
+
 
 ## Requirements
+   
+    iOS 8.0+
+    Xcode 8.0+
+    Swift 3.0+    
+## Use
+1.Inherit your controller with MMDrawController
+    
+    class ViewController: MMDrawerViewController {
+    }
+    
+3.Set main view controller
+            
+     super.setMainWith(identifier: "Home")
+
+2.Set slider view controller
+ 
+     // Init by storyboard identifier
+     super.setLeftWith(identifier: "Member", mode: .frontWidthRate(r: 0.6))
+     //Init by Code
+     let story = UIStoryboard.init(name: "Main", bundle: nil)
+     let right = story.instantiateViewController(withIdentifier: "SliderRight")
+     super.set(right: right, mode: .rearWidth(w: 100))
+
+3.Control MMDrawerController on your main or slider controller
+
+     if let drawer = self.drawer() {
+         drawer.showLeftSlider(isShow: true)
+     }
+  
+
 
 ## Installation
 
