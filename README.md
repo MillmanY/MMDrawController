@@ -44,8 +44,6 @@ portrait
      if let drawer = self.drawer() {
          drawer.showLeftSlider(isShow: true)
      }
-  
-
 
 ## Installation
 
@@ -63,4 +61,3 @@ millmanyang@gmail.com
 ## License
 
 MMDrawController is available under the MIT license. See the LICENSE file for more info.
-# MMDrawController
