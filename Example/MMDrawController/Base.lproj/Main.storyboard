@@ -54,7 +54,7 @@
                                         <rect key="frame" x="0.0" y="28" width="100" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ihz-p5-4gj" id="RKn-dX-1QH">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="105.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3NW-h3-Eqa">
@@ -100,7 +100,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Zyt-kw-Cpw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aaX-12-RBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="pn6-qN-NnH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SlM-Pp-Hl4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -110,6 +109,7 @@
                         <segue destination="sTE-kQ-W6s" kind="relationship" relationship="rootViewController" id="pvY-up-ehh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaX-12-RBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="90" y="230"/>
         </scene>
@@ -238,12 +238,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Kqs-xG-0uI" firstAttribute="top" secondItem="Ndc-Lg-XDl" secondAttribute="bottom" constant="-20" id="FdE-91-Tsd"/>
                             <constraint firstAttribute="right" secondItem="Kqs-xG-0uI" secondAttribute="right" id="Jly-qe-JlT"/>
-                            <constraint firstItem="Kqs-xG-0uI" firstAttribute="top" secondItem="Ndc-Lg-XDl" secondAttribute="bottom" constant="-20" id="Lip-KA-AhK"/>
                             <constraint firstItem="SHC-td-SEC" firstAttribute="top" secondItem="Kqs-xG-0uI" secondAttribute="bottom" id="MJI-GC-oHt"/>
                             <constraint firstItem="Kqs-xG-0uI" firstAttribute="leading" secondItem="1wV-ET-pC8" secondAttribute="leading" id="kOR-is-NAx"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="imgAvater" destination="QIl-jc-EiH" id="R9T-uY-q2z"/>
                         <outlet property="tableView" destination="Kqs-xG-0uI" id="kDn-EO-dsJ"/>
@@ -251,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDG-qZ-Kcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-986" y="1182"/>
+            <point key="canvasLocation" x="-986.39999999999998" y="1181.5592203898052"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lPM-XX-6JL">

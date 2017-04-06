@@ -81,22 +81,31 @@ open class MMDrawerViewController: UIViewController  {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MMDrawerViewController.panAction(pan:)))
         return pan
     }()
+    
+    public var draggable:Bool = true {
+        didSet{
+            mainPan.isEnabled = draggable
+            sliderMap.forEach { $0.1.sliderPan.isEnabled = draggable }
+        }
+    }
 
     override open func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         containerView.frame = self.view.bounds
 
         var isRearShow = false
-        sliderMap.forEach({
+        sliderMap.forEach { (_ , value) in
             if !isRearShow {
-                $0.value.resetFrame()
+                DispatchQueue.main.async {
+                    value.resetFrame()
+                }
             }
             
-            if $0.value.isShow && !$0.value.isSliderFront() {
+            if value.isShow && !value.isSliderFront() {
                 isRearShow = true
             }
-        })
-        
+        }
+
         if !isRearShow {
             containerView.frame = self.view.bounds
         }
@@ -110,28 +119,29 @@ open class MMDrawerViewController: UIViewController  {
     public func set(left:UIViewController, mode:SliderMode) {
         sliderMap[.left] = SliderManager(drawer:self)
         sliderMap[.left]?.addSlider(slider: left, location: .left, mode: mode)
-        self.view.layoutSubviews()
+        self.view.layoutIfNeeded()
+        
     }
     
     public func set(right:UIViewController , mode:SliderMode) {
         sliderMap[.right] = SliderManager(drawer: self)
         sliderMap[.right]?.addSlider(slider: right, location: .right, mode: mode)
-        self.view.layoutSubviews()
+        self.view.layoutIfNeeded()
     }
     
     public func setLeft(mode:SliderMode) {
         sliderMap[.left]?.mode = mode
-        self.view.layoutSubviews()
+        self.view.layoutIfNeeded()
     }
     
     public func setRight(mode:SliderMode) {
         sliderMap[.right]?.mode = mode
-        self.view.layoutSubviews()
+        self.view.layoutIfNeeded()
     }
     
     public func set(main:UIViewController) {
         self.main = main
-        self.view.layoutSubviews()
+        self.view.layoutIfNeeded()
     }
     
     public func showLeftSlider(isShow:Bool) {

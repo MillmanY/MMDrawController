@@ -46,7 +46,13 @@ public class SliderManager: NSObject {
                 slider?.view.shadow(opacity: 0.0, radius: 0.0)
                 sliderPan.isEnabled = false
             }
-            self.show(isShow: false)
+            switch oldValue {
+            case .none:
+                break
+            default:
+                self.show(isShow: false)
+
+            }
         }
     }
     
@@ -61,6 +67,7 @@ public class SliderManager: NSObject {
         self.slider = slider
         self.location = location
         self.mode = mode
+        
         drawer.view.addSubview(slider.view)
         drawer.addChildViewController(slider)
         slider.view.addGestureRecognizer(sliderPan)
@@ -195,6 +202,7 @@ extension SliderManager {
         
         var frame = CGRect(x: 0, y: 0, width: width, height: mainH)
         drawer.view.bringSubview(toFront: sliderView)
+        
         switch self.location {
         case .left:
             frame.origin.x = self.isShow ? 0 : -frame.width
