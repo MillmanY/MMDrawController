@@ -27,10 +27,11 @@ public enum ShowMode {
     case right
     case main
 }
-
+public typealias ConfigBLock = ((_ vc:UIViewController)->Void)?
 struct SegueParams {
     var type:String
     var params:Any?
+    var config:ConfigBLock
 }
 
 open class MMDrawerViewController: UIViewController  {
@@ -41,6 +42,10 @@ open class MMDrawerViewController: UIViewController  {
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let s = segue as? DrawerSegue ,
            let p = sender as? SegueParams {
+            
+            if let config = p.config {
+                config(segue.destination)
+            }
             switch p.type {
             case "main":
                 self.set(main: s.destination)
@@ -157,15 +162,31 @@ open class MMDrawerViewController: UIViewController  {
     }
     
     public func setMainWith(identifier:String) {
-        self.performSegue(withIdentifier: identifier, sender: SegueParams(type: "main", params: nil))
+        self.setController(identifier: identifier, params: SegueParams(type: "main", params: nil, config: nil))
+    }
+    
+    public func setMain(identifier:String , config:ConfigBLock) {
+        self.setController(identifier: identifier, params: SegueParams(type: "main", params: nil, config: config))
     }
     
     public func setLeftWith(identifier:String , mode:SliderMode) {
-        self.performSegue(withIdentifier: identifier, sender: SegueParams(type: "left", params: mode))
+        self.setController(identifier: identifier, params: SegueParams(type: "left", params: mode, config: nil))
+    }
+    
+    public func setLeft(identifier:String , mode:SliderMode , config:ConfigBLock) {
+        self.setController(identifier: identifier, params: SegueParams(type: "left", params: mode, config: config))
     }
     
     public func setRightWith(identifier:String , mode:SliderMode) {
-        self.performSegue(withIdentifier: identifier, sender: SegueParams(type: "right", params: mode))
+        self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: nil))
+    }
+
+    public func setRightWith(identifier:String , mode:SliderMode , config:ConfigBLock) {
+        self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: config))
+    }
+    
+    fileprivate func setController(identifier:String , params :SegueParams ) {
+        self.performSegue(withIdentifier: identifier, sender: params)
     }
 }
 

@@ -39,7 +39,11 @@ extension SliderViewController : UITableViewDelegate {
         if let d = self.drawer() {
             d.showLeftSlider(isShow: false)
             if indexPath.row == 0 {
-                d.setMainWith(identifier: "Home")
+                d.setMain(identifier: "Home", config: { (vc) in
+                    if let nav = vc as? UINavigationController {
+                        nav.viewControllers.first?.title = "Rename Home"
+                    }
+                })
             } else {
                 d.setMainWith(identifier: "Setting")
             }
