@@ -15,9 +15,9 @@
 		3A895B3A13D243B4E4E6D871B9FF5AE8 /* Pods-MMDrawController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF52B977FFC7A4E148CC41317E6C61C /* Pods-MMDrawController_Example-dummy.m */; };
 		5B89F9195C7CA39897C1042C20C084DF /* MMDrawController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B53F33D5542FA2B5A531CB7D09AB6EB5 /* MMDrawController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E1761CB1E8E56DE00AB55FC /* SliderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1761CA1E8E56DE00AB55FC /* SliderManager.swift */; };
-		5E18C2C21E9004EB0071709E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2C11E9004EB0071709E /* CGPointExtension.swift */; };
-		5E18C2CC1E923EF50071709E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2CB1E923EF50071709E /* UIViewControllerExtension.swift */; };
-		5E18C2CE1E923F0F0071709E /* UIvewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2CD1E923F0F0071709E /* UIvewExtension.swift */; };
+		5E6079771EA5BF990084D906 /* Draw+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6079741EA5BF990084D906 /* Draw+CGPoint.swift */; };
+		5E6079781EA5BF990084D906 /* Draw+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6079751EA5BF990084D906 /* Draw+UIView.swift */; };
+		5E6079791EA5BF990084D906 /* Draw+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6079761EA5BF990084D906 /* Draw+UIViewController.swift */; };
 		5EFF340E1E8CE3A300665E37 /* MMDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF340D1E8CE3A300665E37 /* MMDrawerViewController.swift */; };
 		A0D1EC900080165C87C5E4CB4A874E44 /* Pods-MMDrawController_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1F9EE1B3C6B6565E5552005E625D3CC /* Pods-MMDrawController_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B4F093466902E724677DAAA834D5C676 /* Pods-MMDrawController_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2636DFD8B63D9052D75B859C36ED794B /* Pods-MMDrawController_Tests-dummy.m */; };
@@ -47,9 +47,9 @@
 		522254139054842080C71FFA2ECB0CC4 /* MMDrawController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawController-prefix.pch"; sourceTree = "<group>"; };
 		58FA02A04BD5D993CF07C04A2814EB86 /* Pods_MMDrawController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMDrawController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1761CA1E8E56DE00AB55FC /* SliderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderManager.swift; sourceTree = "<group>"; };
-		5E18C2C11E9004EB0071709E /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
-		5E18C2CB1E923EF50071709E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		5E18C2CD1E923F0F0071709E /* UIvewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIvewExtension.swift; sourceTree = "<group>"; };
+		5E6079741EA5BF990084D906 /* Draw+CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Draw+CGPoint.swift"; sourceTree = "<group>"; };
+		5E6079751EA5BF990084D906 /* Draw+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Draw+UIView.swift"; sourceTree = "<group>"; };
+		5E6079761EA5BF990084D906 /* Draw+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Draw+UIViewController.swift"; sourceTree = "<group>"; };
 		5E6810695DE0C09106D9798E1BC5D428 /* Pods-MMDrawController_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MMDrawController_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		5EFF340D1E8CE3A300665E37 /* MMDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMDrawerViewController.swift; sourceTree = "<group>"; };
 		686A36EE816506D2C74664F515DED7CE /* Pods-MMDrawController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MMDrawController_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,11 +175,11 @@
 		C0C5189404763A205D49A8BE09606BB0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5E6079741EA5BF990084D906 /* Draw+CGPoint.swift */,
+				5E6079751EA5BF990084D906 /* Draw+UIView.swift */,
+				5E6079761EA5BF990084D906 /* Draw+UIViewController.swift */,
 				5EFF340D1E8CE3A300665E37 /* MMDrawerViewController.swift */,
 				5E1761CA1E8E56DE00AB55FC /* SliderManager.swift */,
-				5E18C2C11E9004EB0071709E /* CGPointExtension.swift */,
-				5E18C2CB1E923EF50071709E /* UIViewControllerExtension.swift */,
-				5E18C2CD1E923F0F0071709E /* UIvewExtension.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -364,10 +364,10 @@
 			files = (
 				1B9207DD9EA74F46B1A24F566B40820A /* MMDrawController-dummy.m in Sources */,
 				5E1761CB1E8E56DE00AB55FC /* SliderManager.swift in Sources */,
-				5E18C2CE1E923F0F0071709E /* UIvewExtension.swift in Sources */,
-				5E18C2CC1E923EF50071709E /* UIViewControllerExtension.swift in Sources */,
-				5E18C2C21E9004EB0071709E /* CGPointExtension.swift in Sources */,
+				5E6079791EA5BF990084D906 /* Draw+UIViewController.swift in Sources */,
+				5E6079771EA5BF990084D906 /* Draw+CGPoint.swift in Sources */,
 				5EFF340E1E8CE3A300665E37 /* MMDrawerViewController.swift in Sources */,
+				5E6079781EA5BF990084D906 /* Draw+UIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,7 +35,20 @@ struct SegueParams {
 }
 
 open class MMDrawerViewController: UIViewController  {
-    var containerView = UIView()
+    var left:NSLayoutConstraint?
+    lazy var containerView:UIView = {
+        let v = UIView()
+        self.view.addSubview(v)
+        v.layout.constraint { (maker) in
+            maker.set(type: .leading, value: 0)
+            maker.set(type: .top, value: 0)
+            maker.set(type: .bottom, value: 0)
+            maker.set(type: .width, value: self.view.frame.width)
+        }
+        
+        return v
+    }()
+    
     var sliderMap = [SliderLocation:SliderManager]()
     var currentManager:SliderManager?
     
@@ -75,9 +88,10 @@ open class MMDrawerViewController: UIViewController  {
                 containerView.addSubview(new.view)
                 containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
                 containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
-
+                
                 self.view.layoutIfNeeded()
                 self.addChildViewController(new)
+                self.left?.constant = 100
             }
         }
     }
@@ -93,39 +107,23 @@ open class MMDrawerViewController: UIViewController  {
             sliderMap.forEach { $0.1.sliderPan.isEnabled = draggable }
         }
     }
-
-    override open func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        containerView.frame = self.view.bounds
-
-        var isRearShow = false
-        sliderMap.forEach { (_ , value) in
-            if !isRearShow {
-                DispatchQueue.main.async {
-                    value.resetFrame()
-                }
-            }
-            
-            if value.isShow && !value.isSliderFront() {
-                isRearShow = true
-            }
-        }
-
-        if !isRearShow {
-            containerView.frame = self.view.bounds
-        }
-    }
     
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(containerView)
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        self.containerView.layout.update { (make) in
+            make.constraintMap[.width]?.constant = size.width
+        }
+        
+        sliderMap.forEach { (_ ,value) in
+            value.viewRotation(size: size)
+        }
     }
     
     public func set(left:UIViewController, mode:SliderMode) {
         sliderMap[.left] = SliderManager(drawer:self)
         sliderMap[.left]?.addSlider(slider: left, location: .left, mode: mode)
         self.view.layoutIfNeeded()
-        
     }
     
     public func set(right:UIViewController , mode:SliderMode) {
