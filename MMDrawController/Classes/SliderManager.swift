@@ -113,7 +113,6 @@ public class SliderManager: NSObject {
    }
     
     fileprivate func setSliderLayout() {
-        let drawW = drawer.view.frame.width
         slider?.view.layout.constraint { (make) in
             make.set(type: .top, value: 0.0)
             make.set(type: .bottom, value: 0.0)
@@ -149,18 +148,16 @@ public class SliderManager: NSObject {
     fileprivate func setShiftWidth(drawSize:CGSize) {
         let mainW = drawSize.width
         
-        if let view = self.slider?.view {
-            switch mode {
-            case .frontWidth(let w):
-                shiftWidth = w
-            case .frontWidthRate(let r):
-                shiftWidth = mainW * r
-            case .rearWidth(let w):
-                shiftWidth = w
-            case .rearWidthRate(let r):
-                shiftWidth = mainW * r
-            default: break
-            }
+        switch mode {
+        case .frontWidth(let w):
+            shiftWidth = w
+        case .frontWidthRate(let r):
+            shiftWidth = mainW * r
+        case .rearWidth(let w):
+            shiftWidth = w
+        case .rearWidthRate(let r):
+            shiftWidth = mainW * r
+        default: break
         }
     }
     
@@ -196,13 +193,8 @@ extension SliderManager {
     
     func setViewLocate(currentPoint:CGPoint , lastPoint:CGPoint) {
         
-        if let sliderView = self.slider?.view ,
-           let constraint = self.shiftConstraint(){
-            let mainView = self.drawer.containerView 
-            let mainFrame = mainView.frame
-            let shiftView = self.isSliderFront() ? sliderView : mainView
+        if let constraint = self.shiftConstraint(){
             let shift = currentPoint.x - lastPoint.x
-    
             var will = constraint.constant + shift
             
             switch self.location {
@@ -254,10 +246,8 @@ extension SliderManager {
     }
     
     func shiftConstraint() -> NSLayoutConstraint? {
-        
         if let sliderView = self.slider?.view {
             let mainView = self.drawer.containerView
-            let mainFrame = mainView.frame
             let shiftView = self.isSliderFront() ? sliderView : mainView
         
             switch self.location {
