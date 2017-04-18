@@ -21,15 +21,15 @@ var LayoutKey = "AutoLayoutKey"
 typealias ConstraintMaker = ((_ maker:LayoutMaker)->Void)
 extension UIView {
     
-    var layout:LayoutSetting {
+    var mLayout:LayoutSetting {
            set {
             objc_setAssociatedObject(self, &LayoutKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         } get {
             if let draw = objc_getAssociatedObject(self, &LayoutKey) as? LayoutSetting {
                 return draw
             } else {
-                self.layout = LayoutSetting(view: self)
-                return self.layout
+                self.mLayout = LayoutSetting(view: self)
+                return self.mLayout
             }
         }
     }

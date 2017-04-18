@@ -39,7 +39,7 @@ open class MMDrawerViewController: UIViewController  {
     lazy var containerView:UIView = {
         let v = UIView()
         self.view.addSubview(v)
-        v.layout.constraint { (maker) in
+        v.mLayout.constraint { (maker) in
             maker.set(type: .leading, value: 0)
             maker.set(type: .top, value: 0)
             maker.set(type: .bottom, value: 0)
@@ -111,7 +111,7 @@ open class MMDrawerViewController: UIViewController  {
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        self.containerView.layout.update { (make) in
+        self.containerView.mLayout.update { (make) in
             make.constraintMap[.width]?.constant = size.width
         }
         

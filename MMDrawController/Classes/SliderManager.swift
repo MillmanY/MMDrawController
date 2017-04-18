@@ -113,7 +113,7 @@ public class SliderManager: NSObject {
    }
     
     fileprivate func setSliderLayout() {
-        slider?.view.layout.constraint { (make) in
+        slider?.view.mLayout.constraint { (make) in
             make.set(type: .top, value: 0.0)
             make.set(type: .bottom, value: 0.0)
             make.set(type: .width, value: shiftWidth)
@@ -163,7 +163,7 @@ public class SliderManager: NSObject {
     
     func viewRotation(size:CGSize) {
         self.setShiftWidth(drawSize: size)
-        self.slider?.view.layout.update(make: { (make) in
+        self.slider?.view.mLayout.update(make: { (make) in
             make.constraintMap[.width]?.constant = shiftWidth
         })
     }
@@ -252,13 +252,13 @@ extension SliderManager {
         
             switch self.location {
             case .left:
-                return shiftView.layout.getConstraint(attr: .leading)
+                return shiftView.mLayout.getConstraint(attr: .leading)
                 
             case .right:
                 if isSliderFront() {
-                    return shiftView.layout.getConstraint(attr: .trailing)
+                    return shiftView.mLayout.getConstraint(attr: .trailing)
                 } else {
-                    return shiftView.layout.getConstraint(attr: .leading)
+                    return shiftView.mLayout.getConstraint(attr: .leading)
                 }
             default:break
                 
