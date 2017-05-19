@@ -7,9 +7,10 @@
 //
 
 import Foundation
-
+import UIKit
 extension UIView {
-    func shadow(opacity:Float , radius:Float) {
+    func shadow(opacity: Float, radius: Float, offset: CGSize = CGSize.zero) {
+        self.layer.shadowOffset  = offset
         self.layer.shadowColor   = UIColor.black.cgColor
         self.layer.shadowOpacity = opacity
         self.layer.shadowRadius  = CGFloat(radius)
@@ -18,7 +19,7 @@ extension UIView {
 
 var LayoutKey = "AutoLayoutKey"
 
-typealias ConstraintMaker = ((_ maker:LayoutMaker)->Void)
+typealias ConstraintMaker = ((_ maker: LayoutMaker) -> Void)
 extension UIView {
     
     var mLayout:LayoutSetting {
@@ -68,14 +69,14 @@ class LayoutSetting: NSObject {
 }
 
 class LayoutMaker: NSObject {
-    var constraintMap = [NSLayoutAttribute:NSLayoutConstraint]()
+    var constraintMap = [NSLayoutAttribute : NSLayoutConstraint]()
     internal let view:UIView
     internal init (view:UIView) {
         self.view = view
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func set(type:NSLayoutAttribute , value: CGFloat) {
+    func set(type: NSLayoutAttribute, value: CGFloat) {
         
         if let superV = self.view.superview {
             

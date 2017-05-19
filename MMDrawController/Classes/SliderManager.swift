@@ -91,6 +91,10 @@ public class SliderManager: NSObject {
         self.mode = mode
         self.setSliderLayout()
         drawer.addChildViewController(slider)
+//        slider.beginAppearanceTransition(true, animated: true)
+//        slider.didMove(toParentViewController: drawer)
+//        slider.endAppearanceTransition()
+
         slider.view.addGestureRecognizer(sliderPan)
     }
     
@@ -166,6 +170,9 @@ public class SliderManager: NSObject {
         self.slider?.view.mLayout.update(make: { (make) in
             make.constraintMap[.width]?.constant = shiftWidth
         })
+        // prevent layout Error
+        let show = self.isShow
+        self.isShow = show
     }
 }
 

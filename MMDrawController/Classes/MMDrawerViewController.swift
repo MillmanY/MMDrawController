@@ -29,14 +29,13 @@ public enum ShowMode {
 }
 public typealias ConfigBLock = ((_ vc:UIViewController)->Void)?
 struct SegueParams {
-    var type:String
-    var params:Any?
-    var config:ConfigBLock
+    var type: String
+    var params: Any?
+    var config: ConfigBLock
 }
 
 open class MMDrawerViewController: UIViewController  {
-    var left:NSLayoutConstraint?
-    lazy var containerView:UIView = {
+    lazy var containerView: UIView = {
         let v = UIView()
         self.view.addSubview(v)
         v.mLayout.constraint { (maker) in
@@ -76,9 +75,12 @@ open class MMDrawerViewController: UIViewController  {
         }
     }
     
-    public var main:UIViewController? {
+    public var main: UIViewController? {
         willSet {
             main?.removeFromParentViewController()
+            main?.beginAppearanceTransition(true, animated: true)
+            main?.didMove(toParentViewController: nil)
+            main?.endAppearanceTransition()
             main?.view.removeFromSuperview()
         } didSet {
             if let new = main {                
@@ -86,22 +88,28 @@ open class MMDrawerViewController: UIViewController  {
                 new.view.addGestureRecognizer(mainPan)
                 new.view.translatesAutoresizingMaskIntoConstraints = false
                 containerView.addSubview(new.view)
-                containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
-                containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": new.view]))
-                
+                new.view.mLayout.constraint { (maker) in
+                    maker.set(type: .leading, value: 0)
+                    maker.set(type: .top, value: 0)
+                    maker.set(type: .bottom, value: 0)
+                    maker.set(type: .trailing, value: 0)
+                }
                 self.view.layoutIfNeeded()
                 self.addChildViewController(new)
-                self.left?.constant = 100
+//                new.beginAppearanceTransition(true, animated: true)
+//                new.didMove(toParentViewController: self)
+//                new.endAppearanceTransition()
             }
         }
     }
     
-    lazy var mainPan:UIPanGestureRecognizer = {
+    lazy var mainPan: UIPanGestureRecognizer = {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MMDrawerViewController.panAction(pan:)))
+        pan.delegate = self
         return pan
     }()
     
-    public var draggable:Bool = true {
+    public var draggable: Bool = true {
         didSet{
             mainPan.isEnabled = draggable
             sliderMap.forEach { $0.1.sliderPan.isEnabled = draggable }
@@ -120,29 +128,30 @@ open class MMDrawerViewController: UIViewController  {
         }
     }
     
-    public func set(left:UIViewController, mode:SliderMode) {
+    public func set(left: UIViewController, mode: SliderMode) {
         sliderMap[.left] = SliderManager(drawer:self)
         sliderMap[.left]?.addSlider(slider: left, location: .left, mode: mode)
         self.view.layoutIfNeeded()
     }
     
-    public func set(right:UIViewController , mode:SliderMode) {
+    public func set(right: UIViewController , mode: SliderMode) {
         sliderMap[.right] = SliderManager(drawer: self)
         sliderMap[.right]?.addSlider(slider: right, location: .right, mode: mode)
         self.view.layoutIfNeeded()
     }
     
-    public func setLeft(mode:SliderMode) {
+    public func setLeft(mode: SliderMode) {
         sliderMap[.left]?.mode = mode
         self.view.layoutIfNeeded()
     }
     
-    public func setRight(mode:SliderMode) {
+    public func setRight(mode: SliderMode) {
         sliderMap[.right]?.mode = mode
         self.view.layoutIfNeeded()
     }
     
-    public func set(main:UIViewController) {
+    public func set(main: UIViewController) {
+        print("Drawer set main : \(main)")
         self.main = main
         self.view.layoutIfNeeded()
     }
@@ -159,31 +168,32 @@ open class MMDrawerViewController: UIViewController  {
         return sliderMap[direction]
     }
     
-    public func setMainWith(identifier:String) {
+    public func setMainWith(identifier: String) {
+        print("Drawer setMainWith identifier : \(identifier)")
         self.setController(identifier: identifier, params: SegueParams(type: "main", params: nil, config: nil))
     }
     
-    public func setMain(identifier:String , config:ConfigBLock) {
+    public func setMain(identifier: String, config: ConfigBLock) {
         self.setController(identifier: identifier, params: SegueParams(type: "main", params: nil, config: config))
     }
     
-    public func setLeftWith(identifier:String , mode:SliderMode) {
+    public func setLeftWith(identifier:String, mode: SliderMode) {
         self.setController(identifier: identifier, params: SegueParams(type: "left", params: mode, config: nil))
     }
     
-    public func setLeft(identifier:String , mode:SliderMode , config:ConfigBLock) {
+    public func setLeft(identifier:String, mode: SliderMode, config: ConfigBLock) {
         self.setController(identifier: identifier, params: SegueParams(type: "left", params: mode, config: config))
     }
     
-    public func setRightWith(identifier:String , mode:SliderMode) {
+    public func setRightWith(identifier: String, mode: SliderMode) {
         self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: nil))
     }
 
-    public func setRightWith(identifier:String , mode:SliderMode , config:ConfigBLock) {
+    public func setRightWith(identifier: String, mode: SliderMode, config: ConfigBLock) {
         self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: config))
     }
     
-    fileprivate func setController(identifier:String , params :SegueParams ) {
+    fileprivate func setController(identifier: String, params: SegueParams ) {
         self.performSegue(withIdentifier: identifier, sender: params)
     }
 }
@@ -230,4 +240,18 @@ extension MMDrawerViewController {
         }
         return manager
     }
+}
+
+extension MMDrawerViewController: UIGestureRecognizerDelegate {
+   
+    
+//    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        if let pan = otherGestureRecognizer as? UIPanGestureRecognizer,
+//           let scroll = otherGestureRecognizer.view as? UIScrollView {
+//            print(scroll.contentOffset.x)
+//            return (scroll.contentOffset.x < 0 || scroll.contentOffset.x + scroll.frame.width > scroll.contentSize.width)
+//        }
+//        return true
+//    }
+
 }

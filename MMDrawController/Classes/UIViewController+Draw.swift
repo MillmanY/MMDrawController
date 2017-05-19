@@ -14,7 +14,7 @@ public extension UIViewController {
         return self.findDrawer(controller: self)
     }
     
-    private func findDrawer(controller:UIViewController?) -> MMDrawerViewController? {
+    private func findDrawer(controller: UIViewController?) -> MMDrawerViewController? {
 
         if let p = controller?.parent {
          
