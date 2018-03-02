@@ -17,10 +17,10 @@ public enum SliderLocation {
 public class SliderManager: NSObject {
     
     internal let drawer:MMDrawerViewController
+    var showChangeBlock:((Bool)->Void)?
     public var isShow = false {
         didSet {
             let constraint = self.shiftConstraint()
-            
             switch self.location {
             case .left:
                 if isSliderFront() {
@@ -36,6 +36,7 @@ public class SliderManager: NSObject {
                 }
             default:break
             }
+            showChangeBlock?(isShow)
         }
     }
     var animateDuration = 0.15
@@ -177,7 +178,7 @@ public class SliderManager: NSObject {
 }
 
 extension SliderManager {
-    func panAction(pan:UIPanGestureRecognizer) {
+    @objc func panAction(pan:UIPanGestureRecognizer) {
         if let view = pan.view {
             switch pan.state {
             case .began:

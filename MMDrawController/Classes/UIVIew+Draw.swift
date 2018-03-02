@@ -20,9 +20,9 @@ extension UIView {
 var LayoutKey = "AutoLayoutKey"
 
 typealias ConstraintMaker = ((_ maker: LayoutMaker) -> Void)
+
 extension UIView {
-    
-    var mLayout:LayoutSetting {
+    var mLayout: LayoutSetting {
            set {
             objc_setAssociatedObject(self, &LayoutKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         } get {
@@ -38,7 +38,6 @@ extension UIView {
 
 
 class LayoutSetting: NSObject {
-    
     internal let view: UIView
     internal let maker:LayoutMaker
     internal init(view: UIView) {
