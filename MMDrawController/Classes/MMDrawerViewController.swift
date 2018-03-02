@@ -16,7 +16,7 @@ public class DrawerSegue: UIStoryboardSegue {
 public enum SliderMode {
     case frontWidth(w: CGFloat)
     case frontWidthRate(r: CGFloat)
-
+    
     case rearWidth(w: CGFloat)
     case rearWidthRate(r: CGFloat)
     case none
@@ -38,7 +38,7 @@ open class MMDrawerViewController: UIViewController  {
     var statusBarHidden = false {
         didSet {
             self.setNeedsStatusBarAppearanceUpdate()
-//            UIApplication.shared.statusBarView?.isHidden = true
+            //            UIApplication.shared.statusBarView?.isHidden = true
         }
     }
     open override var prefersStatusBarHidden: Bool {
@@ -50,31 +50,23 @@ open class MMDrawerViewController: UIViewController  {
             self.maskView.isHidden = !isShowMask
         }
     }
-
+    
     fileprivate lazy var maskView: UIView = {
         let v = UIView()
         v.isHidden = true
         v.alpha = 0.0
-        v.addGestureRecognizer(maskPan)
         v.backgroundColor = UIColor.black.withAlphaComponent(0.15)
         return v
     }()
     lazy var containerView: UIView = {
         let v = UIView()
         self.view.addSubview(v)
-
+        
         v.mLayout.constraint { (maker) in
             maker.set(type: .leading, value: 0)
             maker.set(type: .top, value: 0)
             maker.set(type: .bottom, value: 0)
             maker.set(type: .width, value: self.view.frame.width)
-        }
-        v.addSubview(maskView)
-        maskView.mLayout.constraint { (maker) in
-            maker.set(type: .leading, value: 0)
-            maker.set(type: .trailing, value: 0)
-            maker.set(type: .top, value: 0)
-            maker.set(type: .bottom, value: 0)
         }
         return v
     }()
@@ -84,7 +76,7 @@ open class MMDrawerViewController: UIViewController  {
     
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let s = segue as? DrawerSegue,
-           let p = sender as? SegueParams {
+            let p = sender as? SegueParams {
             
             if let config = p.config {
                 config(segue.destination)
@@ -101,7 +93,7 @@ open class MMDrawerViewController: UIViewController  {
                     self.set(right: s.destination, mode: slideMode)
                 }
             default:
-              break
+                break
             }
         }
     }
@@ -113,7 +105,7 @@ open class MMDrawerViewController: UIViewController  {
             main?.view.removeFromSuperview()
             main?.endAppearanceTransition()
         } didSet {
-            if let new = main {                
+            if let new = main {
                 new.view.shadow(opacity: 0.4, radius: 5.0)
                 new.view.addGestureRecognizer(mainPan)
                 new.view.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +122,7 @@ open class MMDrawerViewController: UIViewController  {
         }
     }
     
-    lazy var maskPan: UIPanGestureRecognizer = {
+     lazy var maskPan: UIPanGestureRecognizer = {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MMDrawerViewController.panAction(pan:)))
         return pan
     }()
@@ -159,7 +151,7 @@ open class MMDrawerViewController: UIViewController  {
     }
     
     public func set(left: UIViewController, mode: SliderMode) {
-     
+        
         sliderMap[.left] = SliderManager(drawer:self)
         sliderMap[.left]?.showChangeBlock = { [weak self] _ in
             self?.checkShowResult()
@@ -174,7 +166,7 @@ open class MMDrawerViewController: UIViewController  {
         sliderMap[.right]?.showChangeBlock = { [weak self] _ in
             self?.checkShowResult()
         }
-
+        
         self.view.layoutIfNeeded()
     }
     
@@ -226,7 +218,7 @@ open class MMDrawerViewController: UIViewController  {
     public func setRightWith(identifier: String, mode: SliderMode) {
         self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: nil))
     }
-
+    
     public func setRightWith(identifier: String, mode: SliderMode, config: ConfigBlock) {
         self.setController(identifier: identifier, params: SegueParams(type: "right", params: mode, config: config))
     }
@@ -298,6 +290,20 @@ extension MMDrawerViewController {
             manager = nil
         }
         return manager
+    }
+    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        containerView.addSubview(maskView)
+        maskView.mLayout.constraint { (maker) in
+            maker.set(type: .leading, value: 0)
+            maker.set(type: .trailing, value: 0)
+            maker.set(type: .top, value: 0)
+            maker.set(type: .bottom, value: 0)
+        }
+        maskView.addGestureRecognizer(maskPan)
+
     }
 }
 
