@@ -45,7 +45,7 @@ open class MMDrawerViewController: UIViewController  {
         return statusBarHidden
     }
     
-    var isShowMask = false {
+    public var isShowMask = false {
         didSet {
             self.maskView.isHidden = !isShowMask
         }
