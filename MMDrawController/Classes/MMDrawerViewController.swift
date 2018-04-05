@@ -103,6 +103,7 @@ open class MMDrawerViewController: UIViewController  {
             main?.removeFromParentViewController()
             main?.didMove(toParentViewController: nil)
             main?.view.removeFromSuperview()
+            main?.view.subviews.forEach({ $0.removeFromSuperview() })
             main?.endAppearanceTransition()
         } didSet {
             if let new = main {
@@ -181,7 +182,6 @@ open class MMDrawerViewController: UIViewController  {
     }
     
     public func set(main: UIViewController) {
-        print("Drawer set main : \(main)")
         self.main = main
         self.view.layoutIfNeeded()
     }
@@ -199,7 +199,6 @@ open class MMDrawerViewController: UIViewController  {
     }
     
     public func setMainWith(identifier: String) {
-        print("Drawer setMainWith identifier : \(identifier)")
         self.setController(identifier: identifier, params: SegueParams(type: "main", params: nil, config: nil))
     }
     
