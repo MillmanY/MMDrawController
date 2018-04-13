@@ -71,7 +71,7 @@ open class MMDrawerViewController: UIViewController  {
         return v
     }()
     
-    public var sliderMap = [SliderLocation:SliderManager]()
+    public private(set) var sliderMap = [SliderLocation:SliderManager]()
     var currentManager:SliderManager?
     
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
