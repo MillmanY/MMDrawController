@@ -16,7 +16,7 @@ public enum SliderLocation {
 
 public class SliderManager: NSObject {
     
-    internal let drawer:MMDrawerViewController
+    unowned let drawer:MMDrawerViewController
     var showChangeBlock:((Bool)->Void)?
     public var isShow = false {
         didSet {
@@ -48,7 +48,7 @@ public class SliderManager: NSObject {
         return pan
     }()
     
-    var slider:UIViewController? {
+    public private(set) var slider:UIViewController? {
         willSet {
             slider?.view.removeGestureRecognizer(sliderPan)
             slider?.removeFromParentViewController()
