@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIViewController {
     
-    public func drawer() -> MMDrawerViewController? {
+    func drawer() -> MMDrawerViewController? {
         return self.findDrawer(controller: self)
     }
     

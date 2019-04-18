@@ -62,20 +62,20 @@ class LayoutSetting: NSObject {
         self.maker.activate()
     }
     
-    func getConstraint(attr:NSLayoutAttribute) -> NSLayoutConstraint? {
+    func getConstraint(attr:NSLayoutConstraint.Attribute) -> NSLayoutConstraint? {
         return self.maker.constraintMap[attr]
     }
 }
 
 class LayoutMaker: NSObject {
-    var constraintMap = [NSLayoutAttribute : NSLayoutConstraint]()
+    var constraintMap = [NSLayoutConstraint.Attribute : NSLayoutConstraint]()
     internal let view:UIView
     internal init (view:UIView) {
         self.view = view
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func set(type: NSLayoutAttribute, value: CGFloat) {
+    func set(type: NSLayoutConstraint.Attribute, value: CGFloat) {
         
         if let superV = self.view.superview {
             

@@ -51,7 +51,7 @@ public class SliderManager: NSObject {
     public private(set) var slider:UIViewController? {
         willSet {
             slider?.view.removeGestureRecognizer(sliderPan)
-            slider?.removeFromParentViewController()
+            slider?.removeFromParent()
             slider?.view.removeFromSuperview()
             newValue?.view.isHidden = true
         }
@@ -65,11 +65,11 @@ public class SliderManager: NSObject {
             }
             
             if self.isSliderFront() {
-                self.drawer.view.bringSubview(toFront: sliderV)
+                self.drawer.view.bringSubviewToFront(sliderV)
                 self.slider?.view.shadow(opacity: 0.4, radius: 5.0)
                 sliderPan.isEnabled = true
             } else {
-                self.drawer.view.sendSubview(toBack: sliderV)
+                self.drawer.view.sendSubviewToBack(sliderV)
                 self.slider?.view.shadow(opacity: 0.0, radius: 0.0)
                 sliderPan.isEnabled = false
             }
@@ -91,7 +91,7 @@ public class SliderManager: NSObject {
         self.location = location
         self.mode = mode
         self.setSliderLayout()
-        drawer.addChildViewController(slider)
+        drawer.addChild(slider)
 //        slider.beginAppearanceTransition(true, animated: true)
 //        slider.didMove(toParentViewController: drawer)
 //        slider.endAppearanceTransition()

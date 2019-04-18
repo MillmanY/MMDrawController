@@ -100,8 +100,8 @@ open class MMDrawerViewController: UIViewController  {
     
     public var main: UIViewController? {
         willSet {
-            main?.removeFromParentViewController()
-            main?.didMove(toParentViewController: nil)
+            main?.removeFromParent()
+            main?.didMove(toParent: nil)
             main?.view.removeFromSuperview()
             main?.view.subviews.forEach({ $0.removeFromSuperview() })
             main?.endAppearanceTransition()
@@ -118,7 +118,7 @@ open class MMDrawerViewController: UIViewController  {
                     maker.set(type: .trailing, value: 0)
                 }
                 self.view.layoutIfNeeded()
-                self.addChildViewController(new)
+                self.addChild(new)
             }
         }
     }
